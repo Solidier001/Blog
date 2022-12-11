@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link th:href="@{/css/global.css}" rel="stylesheet">
+    <link th:href="@{https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.css}" rel="stylesheet">
+</head>
+
+<body class="background-image-gaming-pattern">
+    <nav class="ui inverted attached segment">
+        <div class="ui container">
+            <div id="menu" class="ui inverted secondary stackable menu">
+                <h2 id="LoginButton" class="ui teal header item m-cursor-pointer">
+                    BLOG
+                </h2>
+                <a href="/Blog/getBlogsPage/l" class="active item m-mobile-hide"><i class="home icon"></i>首页</a>
+                <a th:href="@{/Blog/classifyBlogs/{type}/1(type=${typesList[0].name})} " class="item m-mobile-hide"><i class="idea icon"></i>分类</a>
+                <a th:href="@{/Blog/tagBlogs/{id}/1(id=${tagsList[0].tagId})}" class="item m-mobile-hide"><i class="tags icon"></i>标签</a>
+                <a th:href="@{/archives.html}" class="item m-mobile-hide"><i class="copy icon"></i>归档</a>
+                <a th:href="@{/about.html}" class="item m-mobile-hide"><i class="info icon"></i>关于我</a>
+                <div class="right item">
+                    <div class="ui input icon">
+                        <input type="text" placeholder="Search.....">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a id="menuDisplay" th:href="@{#}" class="ui m-mobile-show icon button black m-right-top">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+    <br>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <!-- 左边博客列表 -->
+            <div class="eleven wide column">
+                <div class="ui top attached segment">
+                    <div class="ui middle two column grid">
+                        <div class="column">
+                            <h3 class="ui teal header">博客</h3>
+                        </div>
+                        <div class="column right aligned">
+                            共<h2 class="ui orange header inline" th:text="${count}"></h2>篇
+                        </div>
+                    </div>
+                </div>
+                <div class="ui attached segment" >
+                    <div th:each="blog : ${blogs}" class="ui vertical segment">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="ui eleven wide column">
+                                <h3 class="ui header" th:text="${blog.tittle}">你真的理解什么是自由吗？</h3>
+                                <p th:text="${blog.abstractString}"></p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui link list horizontal">
+                                            <div class="item">
+                                                <i class="calendar  icon"></i><span th:text="${#dates.format(blog.publishDate, 'yyyy-MM-dd')}"></span>
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>
+                                                <span>2342</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a th:href="@{#}" class="ui label blue" th:text="${blog.typeString}"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="five wide column">
+                                <a th:href="@{/Blog/readBlog/{id}(id=${blog.id})}" target="_blank">
+                                    <img src="/static/img/sinaimg.jpg" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui bottom attached segment">
+                    <div class="ui middle two column grid">
+                        <div class="column">
+                            <a th:if="${pageCount}>1" th:href="@{/Blog/getBlogsPage/{pageCount}(pageCount=${pageCount}-1)}" class="ui teal basic button">上一页</a>
+                            <a th:if="${pageCount}<=1" class="ui basic disabled button">上一页</a>
+                        </div>
+                        <div class="column right aligned">
+                            <a th:if="!${isOut}" th:href="@{/Blog/getBlogsPage/{pageCount}(pageCount=${pageCount}+1)}" class="ui teal basic button">下一页</a>
+                            <a th:if="${isOut}" class="ui basic disabled button">下一页</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 右边的top -->
+            <div class="five wide column">
+
+                <!-- 分类 -->
+                <div class="ui segments">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column"><i class="idea icon"></i>分类</div>
+                            <div class="right aligned column">
+                                <a th:href="@{#}">more <i class="angle double right icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui teal segment">
+                        <div class="ui fluid menu vertical">
+                            <a class="item" th:href="@{/Blog/classifyBlogs/{type}/1(type=${type.name})}" th:each="type:${typesList}">
+                                <span th:text="${type.name}"></span>
+                                <div class="ui teal basic left pointing label" th:text="${type.count}"></div>
+                            </a>
+                            <a class="item" th:href="@{#}">学习日志
+                                <div class="ui teal basic left pointing label">13</div></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 标签 -->
+                <div class="ui segments">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column"><i class="tag icon"></i>标签</div>
+                            <div class="right aligned column">
+                                <a th:href="@{#}">more <i class="angle double right icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui teal segment">
+                    <a th:each="tag : ${tagsList}" class="ui teal basic  label" target="_blank" th:href="@{/Blog/tagBlogs/{id}/1(id=${tag.tagId})}" >
+                        <span th:text="${tag.name}"></span>
+                        <div class="detail" th:text="${tag.count}"></div>
+                    </a>
+                    <a class="ui teal basic  label" target="_blank" th:href="@{#}">方法论
+                        <div class="detail">23</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 最新推荐 -->
+
+        </div>
+
+
+    </div>
+
+    <footer class="ui inverted vertical segment">
+        <div class="ui inverted segment"></div>
+        <div class="ui center aligned container pad">
+            <div class="ui inverted stackable divided grid">
+                <div class="four wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a th:href="@{#}" class="item">用户故事（User Story）</a>
+                        <a th:href="@{#}" class="item">用户故事（User Story）</a>
+                        <a th:href="@{#}" class="item">用户故事（User Story）</a>
+                        <a th:href="@{#}" class="item">用户故事（User Story）</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a th:href="@{#}" class="item">用户故事（User Story）</a>
+                        <a th:href="@{#}" class="item">用户故事（User Story）</a>
+                        <a th:href="@{#}" class="item">用户故事（User Story）</a>
+                        <a th:href="@{#}" class="item">用户故事（User Story）</a>
+                    </div>
+                </div>
+                <div class="eight wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <p>我是一个对自然语言处理感兴趣（真的只是感兴趣，又菜又爱玩那种）的Java后端仔，这是我的个人博客用于记录日常（包括感悟，游戏，番剧等）分享开发以及自然语言处理的知识，希望可以交到志同道合的朋友。
+                    </p>
+                </div>
+            </div>
+            <div class="ui inverted segment"></div>
+            <div class="ui inverted section divider"></div>
+            <p>Copyright © 2021-2024 BLOG Designed by Sun</p>
+        </div>
+    </footer>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="/js/global.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

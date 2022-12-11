@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="/css/global.css" rel="stylesheet">
+  <link href="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+</head>
+
+<body class="background-image-gaming-pattern">
+  <nav class="ui inverted attached segment">
+    <div class="ui container">
+      <div id="menu" class="ui inverted secondary stackable menu">
+        <h2 class="ui teal header item">管理后台</h2>
+        <a href="/Blog/getBlogsPage/1" class="item m-mobile-hide"><i class="home icon"></i>首页</a>
+        <a href="/types.html" class="item m-mobile-hide"><i class="idea icon"></i>分类</a>
+        <a href="/tags.html" class="item m-mobile-hide"><i class="tags icon"></i>标签</a>
+
+      </div>
+    </div>
+    <a id="menuDisplay" href="#" class="ui m-mobile-show icon button black m-right-top">
+      <i class="sidebar icon"></i>
+    </a>
+  </nav>
+  <div class="ui attached pointing menu ">
+    <div class="ui container">
+      <div class="right menu">
+        <a href="/admin/admin.html" class="active teal item">列表</a>
+        <a href="/Editor/publishPage" class="item">发布</a></div>
+    </div>
+  </div>
+  <div class="m-container-small">
+    <div class="ui container">
+      <form action="#" class="ui segment form">
+        <div class="fields">
+          <div class="field">
+            <input type="text" name="tittle" placeholder="标题">
+          </div>
+          <div class="field">
+            <div class="ui selection dropdown">
+              <input type="hidden" name="gender">
+              <i class="dropdown icon"></i>
+              <div class="default text">分类</div>
+              <div class="menu">
+                <div class="item" data-value="1">错误日志</div>
+                <div class="item" data-value="0">开发者手册</div>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui checkbox" style="margin-top: 20%;">
+              <input id="recommend" type="checkbox" name="recommend">
+              <label class="m-cursor-pointer" for="recommend">重要</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui teal basic button"><i class="search icon"></i>搜索</div>
+          </div>
+        </div>
+      </form>
+      <table class="ui celled table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>标题</th>
+            <th>类型</th>
+            <th>重要</th>
+            <th>更新时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>刻意练习清单</td>
+            <td>认知升级</td>
+            <td>是</td>
+            <td>2017</td>
+            <td>
+              <a href="" class="ui mini teal button">编辑</a>
+              <a href="" class="ui mini red button">编辑</a>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="6">
+              <div class="ui pagination menu">
+                <a class="item ">上一页</a>
+                <a class="item ">下一页</a>
+              </div>
+              <a href="/admin/publisher.html" class="ui  right floated teal basic button">新增</a>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <footer class="ui inverted vertical segment">
+    <div class="ui inverted segment"></div>
+    <div class="ui center aligned container pad">
+      <div class="ui inverted stackable divided grid">
+        <div class="four wide column">
+          <h4 class="ui inverted header">最新博客</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+          </div>
+        </div>
+        <div class="four wide column">
+          <h4 class="ui inverted header">最新博客</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+          </div>
+        </div>
+        <div class="eight wide column">
+          <h4 class="ui inverted header">最新博客</h4>
+          <p>我是一个对自然语言处理感兴趣（真的只是感兴趣，又菜又爱玩那种）的Java后端仔，这是我的个人博客用于记录日常（包括感悟，游戏，番剧等）分享开发以及自然语言处理的知识，希望可以交到志同道合的朋友。
+          </p>
+        </div>
+      </div>
+      <div class="ui inverted segment"></div>
+      <div class="ui inverted section divider"></div>
+      <p>Copyright © 2021-2024 BLOG Designed by Sun</p>
+    </div>
+  </footer>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <script src="/js/index.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+
+</html>

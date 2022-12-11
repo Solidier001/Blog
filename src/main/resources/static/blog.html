@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="/css/global.css" rel="stylesheet">
+  <link href="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.css" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/editor/css/style.css" />
+  <link rel="stylesheet" href="/lib/editor/css/editormd.css" />
+</head>
+
+<body class="background-image-gaming-pattern">
+  <nav class="ui inverted attached segment">
+    <div class="ui container">
+      <div id="menu" class="ui inverted secondary stackable menu">
+        <h2 id="LoginButton" class="ui teal header item m-cursor-pointer">
+          BLOG
+        </h2>
+        <a href="/Blog/getBlogsPage/1" class="item m-mobile-hide"><i class="home icon"></i>首页</a>
+        <a href="/types.html" class="item m-mobile-hide"><i class="idea icon"></i>分类</a>
+        <a href="/tags.html" class="item m-mobile-hide"><i class="tags icon"></i>标签</a>
+        <a href="/archives.html" class="item m-mobile-hide"><i class="copy icon"></i>归档</a>
+        <a href="/about.html" class="item m-mobile-hide"><i class="info icon"></i>关于我</a>
+        <div class="right item">
+          <div class="ui input icon">
+            <input type="text" placeholder="Search.....">
+            <i class="search link icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a id="menuDisplay" href="#" class="ui m-mobile-show icon button black m-right-top">
+      <i class="sidebar icon"></i>
+    </a>
+  </nav>
+  <div class="m-container-small">
+    <div class="ui container">
+      <div class="ui top attached segment">
+        <div class="ui link list horizontal">
+          <div class="item">
+            <i class="calendar icon"></i><span id="date"></span>
+          </div>
+          <div class="item">
+            <i class="eye icon"></i>
+            <span>2342</span>
+          </div>
+        </div>
+      </div>
+      <div class="ui attached segment">
+        <img src="/static/img/sinaimg.jpg" alt="" class="ui fluid rounded image">
+      </div>
+      <div class="ui attached padded segment">
+        <div class="ui right aligned basic  segment">
+          <div class="ui label basic orange">原创</div>
+        </div>
+        <h2 class="ui center aligned header">n元语法模型</h2>
+        <br>
+        <div id="bolgcontent" class="m-padded-lr-responsive m-padded-b">
+          <textarea style="display:none;" placeholder="markdown语言"></textarea>
+        </div>
+        <!-- 标签 -->
+        <div class="">
+          <a href="#" class="ui basic teal left pointing label ">自然语言处理</a>
+        </div>
+      </div>
+      <div class="ui attached positive message">
+        <div class="ui middle aligned grid">
+          <div class="eleven wide column">
+            <ul class="list">
+              <li>作者：孙世杰</li>
+              <li>发表时间</li>
+              <li>Copyright © 2021-2024 BLOG Designed by Sun</li>
+            </ul>
+          </div>
+          <div class="five wide column"></div>
+        </div>
+      </div>
+      <!-- <div class="ui bottom attached segment">
+                留言区
+                <div class="ui comments">
+                    <h3 class="ui dividing header">评论</h3>
+                    <div class="comment">
+                      <a class="avatar">
+                        <img src="/images/avatar/small/matt.jpg">
+                      </a>
+                      <div class="content">
+                        <a class="author">Matt</a>
+                        <div class="metadata">
+                          <span class="date">今天下午 5:42</span>
+                        </div>
+                        <div class="text">太赞了！ </div>
+                        <div class="actions">
+                          <a class="reply">回复</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment">
+                      <a class="avatar">
+                        <img src="/images/avatar/small/elliot.jpg">
+                      </a>
+                      <div class="content">
+                        <a class="author">Elliot Fu</a>
+                        <div class="metadata">
+                          <span class="date">昨天上午12:30</span>
+                        </div>
+                        <div class="text">
+                          <p>這對我的研究是非常有用.謝謝!</p>
+                        </div>
+                        <div class="actions">
+                          <a class="reply">回复</a>
+                        </div>
+                      </div>
+                      <div class="comments">
+                        <div class="comment">
+                          <a class="avatar">
+                            <img src="/images/avatar/small/jenny.jpg">
+                          </a>
+                          <div class="content">
+                            <a class="author">Jenny Hess</a>
+                            <div class="metadata">
+                              <span class="date">刚刚</span>
+                            </div>
+                            <div class="text">艾略特你永远是多么正确 :) </div>
+                            <div class="actions">
+                              <a class="reply">回复</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment">
+                      <a class="avatar">
+                        <img src="/images/avatar/small/joe.jpg">
+                      </a>
+                      <div class="content">
+                        <a class="author">Joe Henderson</a>
+                        <div class="metadata">
+                          <span class="date">5 天以前</span>
+                        </div>
+                        <div class="text">老兄，这太棒了。非常感谢。 </div>
+                        <div class="actions">
+                          <a class="reply">回复</a>
+                        </div>
+                      </div>
+                    </div>
+                    <form class="ui reply form">
+                      <div class="field">
+                        <textarea></textarea>
+                      </div>
+                      <div class="ui blue labeled submit icon button">
+                        <i class="icon edit"></i> 提交
+                      </div>
+                    </form>
+                  </div>
+            </div> -->
+    </div>
+  </div>
+  <footer class="ui inverted vertical segment">
+    <div class="ui inverted segment"></div>
+    <div class="ui center aligned container pad">
+      <div class="ui inverted stackable divided grid">
+        <div class="four wide column">
+          <h4 class="ui inverted header">最新博客</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+          </div>
+        </div>
+        <div class="four wide column">
+          <h4 class="ui inverted header">最新博客</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+          </div>
+        </div>
+        <div class="eight wide column">
+          <h4 class="ui inverted header">最新博客</h4>
+          <p>我是一个对自然语言处理感兴趣（真的只是感兴趣，又菜又爱玩那种）的Java后端仔，这是我的个人博客用于记录日常（包括感悟，游戏，番剧等）分享开发以及自然语言处理的知识，希望可以交到志同道合的朋友。
+          </p>
+        </div>
+      </div>
+      <div class="ui inverted segment"></div>
+      <div class="ui inverted section divider"></div>
+      <p>Copyright © 2021-2024 BLOG Designed by Sun</p>
+    </div>
+  </footer>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <script src="/js/index.js"></script>
+  <script src="/lib/editor/lib/flowchart.min.js"></script>
+  <script src="/lib/editor/lib/jquery.flowchart.min.js"></script>
+  <script src="/lib/editor/lib/marked.min.js"></script>
+  <script src="/lib/editor/lib/prettify.min.js"></script>
+  <script src="/lib/editor/lib/raphael.min.js"></script>
+  <script src="/lib/editor/lib/sequence-diagram.min.js"></script>
+  <script src="/lib/editor/lib/underscore.min.js"></script>
+  <script src="/lib/editor/editormd.js"></script>
+  <script src="/js/blog.js"></script>
+</body>
+
+</html>

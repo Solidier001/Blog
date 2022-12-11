@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link th:href="@{/css/global.css}" rel="stylesheet">
+  <link th:href="@{https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.css}" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/lib/editor/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/lib/editor/css/editormd.css}" />
+</head>
+
+<body class="background-image-gaming-pattern">
+  <nav class="ui inverted attached segment">
+    <div class="ui container">
+      <div id="menu" class="ui inverted secondary stackable menu">
+        <h2 class="ui teal header item">管理后台</h2>
+        <a th:href="@{/Blog/getBlogsPage/1}" class="item m-mobile-hide"><i class="home icon"></i>首页</a>
+        <a th:href="@{/Blog/classifyBlogs/{type}/1(type=${#servletContext.getAttribute('firstType')})} " class="item m-mobile-hide"><i class="idea icon"></i>分类</a>
+        <a th:href="@{/Blog/tagBlogs/{id}/1(id=${#servletContext.getAttribute('firstTag')})}" class="item m-mobile-hide"><i class="tags icon"></i>标签</a>
+      </div>
+    </div>
+    <a id="menuDisplay" href="#" class="ui m-mobile-show icon button black m-right-top">
+      <i class="sidebar icon"></i>
+    </a>
+  </nav>
+  <div class="ui attached pointing menu">
+    <div class="ui container">
+      <div class="right menu">
+        <a th:href="@{/admin/admin.html}" class="item">列表</a>
+        <a th:href="@{/Editor/adminBlogsPage/1}" class="active teal item">发布</a></div>
+    </div>
+  </div>
+  <div class="m-container-small">
+    <div class="ui container">
+      <form action="#" class="ui form">
+        <div class="required field">
+          <div class="ui left labeled input">
+            <div class="ui selection compact teal basic dropdown label">
+              <input name="lable" type="hidden" value="原创">
+              <i class="dropdown icon"></i>
+              <div class="text">原创</div>
+              <div class="menu">
+                <div class="item" data-value="原创">原创</div>
+                <div class="item" data-value="转载">转载</div>
+                <div class="item" data-value="翻译">翻译</div>
+              </div>
+            </div>
+            <input type="text" th:value="${blog.tittle}" name="tittle" placeholder="标题">
+          </div>
+        </div>
+        <div class="required field">
+          <div class="ui left labeled input">
+            <input type="text" name="abstract" placeholder="摘要" th:value="${blog.abstractString}">
+          </div>
+        </div>
+        <div class="field">
+          <div id="test-editormd" style="z-index: 1 !important;">
+            <textarea th:text="${blog.content}"  placeholder="博客内容" name="content" style="display:none;"></textarea>
+          </div>
+        </div>
+        <div class="two fields">
+          <div class=" inline m-half-width field">
+            <div class="ui fluid left labeled input">
+              <lable class="ui compact teal basic label">分类</lable>
+              <div class="ui fluid selection dropdown">
+                <input th:value="${blog.typeString}" type="hidden" name="type">
+                <i class="dropdown icon"></i>
+                <div class="text">分类</div>
+                <div class="menu">
+                  <div class="item" data-value="错误日志">错误日志</div>
+                  <div class="item" data-value="开发者手册">开发者手册</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class=" inline m-half-width field">
+            <div class="ui fluid left labeled input">
+              <lable class="ui compact teal basic label">标签</lable>
+              <div class="ui fluid search multiple selection dropdown">
+                <input th:value="${blog.tagString}" type="hidden" name="tag">
+                <i class="dropdown icon"></i>
+                <div class="text">标签</div>
+                <div class="menu">
+                  <div class="item" data-value="java">java</div>
+                  <div class="item" data-value="spring">spring</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="ui left labeled input">
+            <lable class="ui compact teal basic label">首图</lable>
+            <input type="text" th:value="${blog.indexPicture}" name="indexPicture" placeholder="首图引用地址">
+          </div>
+        </div>
+        <input name="filePath" hidden type="text" th:value="${blog.filePath}">
+        <input name="id" hidden type="text" th:value="${blog.id}">
+
+        <div class="fields">
+          <div class="field">
+            <div class="ui checkbox">
+              <input type="checkbox" th:checked="${blog.important}" id="important" value="重要" name="important" class="hidden">
+              <label for="important">重要</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui checkbox">
+              <input type="checkbox" th:checked="${blog.shareinfo}" id="shareinfo" value="转载" name="shareinfo" class="hidden">
+              <label for="shareinfo">转载</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui error message"></div>
+
+        <div id="show" class="markdown-body editormd-preview-container"></div>
+
+        <div class="ui right aligned container">
+          <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
+          <button id="save" type="button" class="ui blue button">保存</button>
+          <button id="publish"  type="button" class="ui teal button" th:text="${update}? '更新' : '发布'"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer class="ui inverted vertical segment">
+    <div class="ui inverted segment"></div>
+    <div class="ui center aligned container pad">
+      <div class="ui inverted stackable divided grid">
+        <div class="four wide column">
+          <h4 class="ui inverted header">最新博客</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+          </div>
+        </div>
+        <div class="four wide column">
+          <h4 class="ui inverted header">最新博客</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+            <a href="#" class="item">用户故事（User Story）</a>
+          </div>
+        </div>
+        <div class="eight wide column">
+          <h4 class="ui inverted header">最新博客</h4>
+          <p>我是一个对自然语言处理感兴趣（真的只是感兴趣，又菜又爱玩那种）的Java后端仔，这是我的个人博客用于记录日常（包括感悟，游戏，番剧等）分享开发以及自然语言处理的知识，希望可以交到志同道合的朋友。
+          </p>
+        </div>
+      </div>
+      <div class="ui inverted segment"></div>
+      <div class="ui inverted section divider"></div>
+      <p>Copyright © 2021-2024 BLOG Designed by Sun</p>
+    </div>
+  </footer>
+  <script th:src="@{https://cdn.bootcdn.net/ajax/libs/jquery/3.1.0/jquery.min.js}"></script>
+  <script th:src="@{https://cdn.bootcdn.net/ajax/libs/semantic-ui/2.4.1/semantic.min.js}"></script>
+  <script th:src="@{/js/global.js}"></script>
+  <script th:src="@{/js/admin.js}"></script>
+  <script th:src="@{/lib/editor/editormd.min.js}"></script>
+  <script th:src="@{/js/pulisher.js}"></script>
+</body>
+
+</html>
